@@ -7,7 +7,7 @@ https://leetcode.com/problems/non-overlapping-intervals/
         intervals = sorted(intervals)
         prev = float("-inf")
         count = 0
-        for i in intervals:
+        for i  in intervals:
             if i[0]>=prev:
                 prev = i[1]
             else:
