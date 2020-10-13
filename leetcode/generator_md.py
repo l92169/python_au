@@ -32,15 +32,15 @@ link = source_lines[1].split("/")[-2]
 code = source_lines[3::]
 leetlink = source_lines[1]
 plus, other = '', ''
-with open("intervals.md", 'r') as in_file:
+with open("linked-list.md", 'r') as in_file:
     source_lines1 = in_file.readlines()
 for i in range(1, len(source_lines1)):
     if source_lines1[i][0] == "+":
         plus += source_lines1[i]
     else:
         other += source_lines1[i]
-out_file = open("intervals.md", 'w')
-out_file.write("# {}\n\n{}".format("Intervals", plus))
+out_file = open("linked-list.md", 'w')
+out_file.write("# {}\n\n{}".format("Linked list", plus))
 out_file.write("+ [{}](#{}){}\n".format(LeetCodeSol.get_md_title(title, source_lines), LeetCodeSol.get_md_link(link, source_lines), other))
 out_file.write("\n## {}\n\n".format(LeetCodeSol.get_md_title(title, source_lines)))
 out_file.write("{}\n".format((LeetCodeSol.get_Leetcodelink(leetlink, source_lines))))
