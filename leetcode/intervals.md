@@ -13,10 +13,10 @@ def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
     prev = float("-inf")
     count = 0
     for i in intervals:
-        if i[0]>=prev:
+        if i[0] >= prev:
             prev = i[1]
         else:
-            count +=1
+            count += 1
             prev = min(prev,i[1])
     return count
 ```
