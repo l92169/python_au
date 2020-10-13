@@ -14,7 +14,7 @@ def reverseList(self, head: ListNode) -> ListNode:
     prev = None
     next = None
     cur = head
-    while cur!=None:
+    while cur != None:
         next = cur.next
         cur.next = prev
         prev = cur
@@ -29,7 +29,7 @@ https://leetcode.com/problems/middle-of-the-linked-list/
 ```python
 def middleNode(self, head: ListNode) -> ListNode:
     array = [head]
-    while array[-1].next!=None:
+    while array[-1].next != None:
         array.append(array[-1].next)
     return array[len(array)//2]
 
@@ -68,8 +68,6 @@ def isPalindrome(self, head:ListNode) -> int:
     return True
 
 ```
-
-
 
 ## Merge Two Sorted Lists
 
