@@ -20,7 +20,7 @@ class LeetCodeSolution:
         return '+ [{}](#{})'.format(self.title, self.link[30:])
 
     def get_md_formatted_solution(self):
-        return ('{}\n{}\n\n{}\n\n{}'.format(self.get_md_solution_link(), self.get_md_title(), self.link,
+        return ('{}\n{}\n\n{}\n\n{}'.format(self.get_md_title(),self.get_md_solution_link(), self.link,
                                             self.get_md_formatted_code()))
 
 
