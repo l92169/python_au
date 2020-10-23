@@ -1,4 +1,7 @@
-#Merge Intervals
+# Intervals
+
+## Merge Intervals
+
 + [Merge Intervals](#merge-intervals)
 
 https://leetcode.com/problems/merge-intervals/
