@@ -1,3 +1,5 @@
+import sys
+
 LEETCODE_END_LINK = '[comment]: <> (Stop)'
 
 
@@ -14,13 +16,13 @@ class LeetCodeSolution:
         return '``` python\n{}\n```'.format('\n'.join(map(lambda x: x.strip('\n')[4:], self.code)))
 
     def get_md_title(self):
-        return '#{}'.format(self.title)
+        return '#{}\n\n##{}\n'.format('Intervals', self.title)
 
     def get_md_solution_link(self):
-        return '+ [{}](#{})'.format(self.title, self.link[30:])
+        return '+ [{}](#{})'.format(self.title, self.link[30:-1])
 
     def get_md_formatted_solution(self):
-        return ('{}\n{}\n\n{}\n\n{}'.format(self.get_md_title(),self.get_md_solution_link(), self.link,
+        return ('{}\n{}\n\n{}\n\n{}'.format(self.get_md_title(), self.get_md_solution_link(), self.link,
                                             self.get_md_formatted_code()))
 
 
@@ -58,6 +60,7 @@ def main():
     old = read_all_file('intervals.md')
     result = merge_solutions(old, new)
     write_to_md('intervals.md', result)
+    print("Hello")
 
 
 if __name__ == "__main__":
