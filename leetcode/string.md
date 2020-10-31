@@ -3,8 +3,6 @@
 ## Valid Anagram
 
 + [Valid Anagram](#valid-anagram)
-+ [Valid Anagram](#valid-anagram)
-+ [Valid Anagram](#valid-anagram)
 
 https://leetcode.com/problems/valid-anagram/
 
@@ -42,5 +40,26 @@ def count_char_freq(self, s: str):
     for keys in s:
         freq[keys] = freq.get(keys, 0) +1
     return freq
+```
+
+https://leetcode.com/problems/valid-anagram/
+
+``` python
+def isAnagram(self, s: str, t: str) -> bool:
+    s_freq = self.count_char_freq(s) 
+    t_freq = self.count_char_freq(t)
+    if len(s) != len(t):
+        return False
+    for key, freq in s_freq.items():
+        if freq != t_freq.get(key, 0):
+            return False
+    return True
+    
+def count_char_freq(self, s: str):
+    freq = {}
+    for keys in s:
+        freq[keys] = freq.get(keys, 0) +1
+    return freq
+                    
 ```
 
