@@ -1,6 +1,6 @@
-#String
+# String
 
-##Valid Anagram
+## Valid Anagram
 
 + [Valid Anagram](#valid-anagram)
 + [Valid Anagram](#valid-anagram)
