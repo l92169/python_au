@@ -1,4 +1,4 @@
-# Intervals
+# Math
 
 ## Base 7
 
