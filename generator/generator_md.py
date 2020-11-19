@@ -16,7 +16,7 @@ class LeetCodeSolution:
         return '``` python\n{}\n```'.format('\n'.join(map(lambda x: x.strip('\n')[4:], self.code)))
 
     def get_md_title(self):
-        return '#{}\n\n##{}\n'.format('Intervals', self.title)
+        return '# {}\n\n## {}\n'.format('Intervals', self.title)
 
     def get_md_solution_link(self):
         return '+ [{}](#{})'.format(self.title, self.link[30:-1])
