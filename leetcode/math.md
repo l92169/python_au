@@ -16,10 +16,16 @@ def reverse(self, x: int) -> int:
         while x != 0:
             a = a * 10 + x % 10
             x = x // 10
-        return a * (-1)
+        if abs(a) < pow(2,31) - 1:
+            return a * (-1)
+        else:
+            return 0
     else:
         while x != 0:
             a = a * 10 + x % 10
             x = x // 10
-        return a
+        if abs(a) < pow(2,31) - 1:
+            return a 
+        else:
+            return 0
 ```
