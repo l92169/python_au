@@ -31,9 +31,9 @@ class Triangle:
 
 
 class Solution:
-    def __init__(self,filename):
-        self.filename = filename
-
+    def __init__(self,filename, outputname):
+        self.filename = str(filename)
+        self.outputname = str(outputname)
 
     def get_list(self):
         with open(self.filename) as i:
@@ -50,7 +50,7 @@ class Solution:
                     return False
             return True
         arr = []
-        file = open('output.txt', 'w')
+        file = open((self.outputname), 'w')
         count = len(self.get_list())
         result = self.get_list()
         for i in range(count):
@@ -69,11 +69,11 @@ class Solution:
             file.close()
 
 
-def main(filename):
-    arr = Solution(filename)
+def main(inputname, outputname):
+    arr = Solution(inputname, outputname)
     arr.find()
 
 
 if __name__ == "__main__":
     params = sys.argv
-    main('C:/Users/liza_/PycharmProjects/python_au/triangle/src.txt')
+    main('C:/Users/liza_/PycharmProjects/python_au/triangle/src.txt', 'C:/Users/liza_/PycharmProjects/python_au/triangle/out.txt')
