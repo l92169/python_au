@@ -61,20 +61,19 @@ class Solution:
                 area1 = area.S()
                 arr.append(area1)
             else:
-                file.write(str('Координаты треугольника {} не зачтены, потому что неправильный ввод \n'.format(i+1)))
                 arr.append(-1)
-        if max(arr) == -1:
-            file.write('Треугольника нет')
-        else:
-            file.write(str(list(map(float, result[arr.index(max(arr))]))))
-        file.close()
+        if max(arr) != -1:
+            b = result[arr.index(max(arr))]
+            for i in range(len(b)):
+                file.write(str(b[i]) + ' ')
+            file.close()
 
 
 def main(filename):
     arr = Solution(filename)
-    arr1 = arr.find()
+    arr.find()
 
 
 if __name__ == "__main__":
     params = sys.argv
-    main(params[0])
+    main('C:/Users/liza_/PycharmProjects/python_au/triangle/src.txt')
