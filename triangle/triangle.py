@@ -76,4 +76,4 @@ def main(inputname, outputname):
 
 if __name__ == "__main__":
     params = sys.argv
-    main('C:/Users/liza_/PycharmProjects/python_au/triangle/src.txt', 'C:/Users/liza_/PycharmProjects/python_au/triangle/out.txt')
+    main(params[0], params[1])
