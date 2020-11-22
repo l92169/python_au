@@ -1,67 +1,80 @@
 from math import sqrt
 import sys
-class Triangle:
-    def __init__(self, coordinate):
-        def length(x0, y0, x, y):
-            return sqrt((x0 - x) * (x0 - x) + (y0 - y) * (y0 - y))
 
-        self.x1 = coordinate[0]
-        self.y1 = coordinate[1]
-        self.x2 = coordinate[2]
-        self.y2 = coordinate[3]
-        self.x3 = coordinate[4]
-        self.y3 = coordinate[5]
-        self.side1 = length(self.x1, self.y1, self.x2, self.y2)
-        self.side2 = length(self.x1, self.y1, self.x3, self.y3)
-        self.side3 = length(self.x3, self.y3, self.x2, self.y2)
+class Point:
+    def __init__(self, x, y):
+        self.x = float(x)
+        self.y = float(y)
+
+
+class Triangle:
+    def __init__(self, side1, side2, side3):
+        def length(x, y, x0, y0):
+            return sqrt((x - x0) * (x - x0) + (y - y0)*(y - y0))
+        self.side1 = length(side1.x, side1.y, side2.x, side2.y)
+        self.side2 = length(side2.x, side2.y, side3.x, side3.y)
+        self.side3 = length(side1.x, side1.y, side3.x, side3.y)
 
 
     def S(self):
-        p = self.poluperimetr()
-        return sqrt(p * (p - self.side1) * (p - self.side2) * (p - self.side3))
-
+        if self.chech_triangle() == True:
+            p = self.poluperimetr()
+            return sqrt(p * (p - self.side1) * (p - self.side2) * (p - self.side3))
+        return -1
 
     def poluperimetr(self):
         return (self.side1 + self.side2 +self.side3) / 2
 
 
-class FileUtilis:
+    def chech_triangle(self):
+        return (self.side1 < self.side2 + self.side3) and (self.side2 < self.side1 + self.side3) and (self.side3 < self.side1 + self.side3)
+
+
+class Solution:
     def __init__(self,filename):
         self.filename = filename
-    def __str__(self):
-        return
 
 
-def get_list(filename):
-    with open(filename) as i:
-        result = list(map(lambda x: x.strip('\n').split(), i.readlines()))
-        l = len(result)
-        for j in range(l):
-            result[j] = list(map(int, result[j]))
-    return result
-def check(coordinate):
-    if len(coordinate) != 6:
-        return False
-    for i in range(len(coordinate)):
-        if str(coordinate[i]).isdigit == False:
-            return False
-    return True
+    def get_list(self):
+        with open(self.filename) as i:
+            self.result = list(map(lambda x: x.strip('\n').split(), i.readlines()))
+        return self.result
 
+
+    def find(self):
+        def check(result):
+            if len(result) != 6:
+                return False
+            for i in range(len(result)):
+                if (result[i].isdigit()) == False:
+                    return False
+            return True
+        arr = []
+        file = open('output.txt', 'w')
+        count = len(self.get_list())
+        result = self.get_list()
+        for i in range(count):
+            if check(result[i]):
+                area = Triangle(Point(self.result[i][0], self.result[i][1]),
+                                Point(self.result[i][2], self.result[i][3]),
+                                Point(self.result[i][4], self.result[i][5]))
+                area1 = area.S()
+                arr.append(area1)
+            else:
+                file.write(str('Координаты треугольника {} не зачтены, потому что неправильный ввод \n'.format(i+1)))
+                arr.append(-1)
+        if max(arr) == -1:
+            file.write('Треугольника нет')
+        else:
+            file.write(str(list(map(float, result[arr.index(max(arr))]))))
+        file.close()
 
 
 def main(filename):
-    coordinate = get_list(filename)
-    arr = []
-    for i in range(len(coordinate)):
-        if check(coordinate[i]):
-            area = Triangle(coordinate[i])
-            area1 = area.S()
-            arr.append(area1)
-            print(area1)
-        else:
-            print('Координаты треугольника {} не зачтены, потому что неправильный ввод'.format(i))
-            arr.append(-1)
-    return coordinate[arr.index(max(arr))]
+    arr = Solution(filename)
+    arr1 = arr.find()
+
+
 if __name__ == "__main__":
     params = sys.argv
-    print(main('C:/Users/liza_/PycharmProjects/python_au/triangle/src.txt'))
+    main(params[0])
