@@ -10,11 +10,21 @@ class MyLinkedList:
         """
         Initialize your data structure here.
         """
+        self.head = None
+        self.count = 0
 
     def get(self, index: int) -> int:
         """
         Get the value of the index-th node in the linked list. If the index is invalid, return -1.
         """
+        if index < 0 or index < self.count:
+            return -1
+        else:
+            cur = self.head
+            while index > 0:
+                cur = cur.next
+                index -= 1
+            return cur.val
 
     def addAtHead(self, val: int) -> None:
         """
