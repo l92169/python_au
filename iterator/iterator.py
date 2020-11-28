@@ -5,13 +5,33 @@ class Node:
 
 
 class MyLinkedList:
+    def __iter__(self):
+        return self
 
-    def __init__(self):
+
+    def __init__(self, limit):
         """
         Initialize your data structure here.
         """
         self.head = None
         self.count = 0
+        self.limit = limit
+        self.counter = 0
+
+
+    def __next__(self):
+        if self.counter < self.limit:
+            self.counter += 1
+            return self.get(self.counter - 1)
+        else:
+            raise StopIteration
+
+
+    def printlist(self):
+        for elem in self:
+            print(elem)
+        self.counter = 0
+
 
     def get(self, index: int) -> int:
         """
