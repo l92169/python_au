@@ -17,7 +17,7 @@ class MyLinkedList:
         """
         Get the value of the index-th node in the linked list. If the index is invalid, return -1.
         """
-        if index < 0 or index < self.count:
+        if index < 0 or index >= self.count:
             return -1
         else:
             cur = self.head
@@ -42,11 +42,36 @@ class MyLinkedList:
         """
         Append a node of value val to the last element of the linked list.
         """
+        newNode = Node(val)
+        if not self.head:
+            self.head = newNode
+        else:
+            cur = self.head
+            while cur.next != None:
+                cur = cur.next
+            cur.next = newNode
+        self.count += 1
+
 
     def addAtIndex(self, index: int, val: int) -> None:
         """
         Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted.
         """
+        if index == 0:
+            return self.addAtHead(val)
+        elif index == self.count:
+            return self.addAtTail(val)
+        elif index < 0 or index >= self.count:
+            return
+        else:
+            newNode = Node(val)
+            cur = self.head
+            for i in range(index - 1):
+                cur = cur.next
+            newNode.next = cur.next
+            cur.next = newNode
+            self.count += 1
+
 
     def deleteAtIndex(self, index: int) -> None:
         """
