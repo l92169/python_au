@@ -77,6 +77,31 @@ class MyLinkedList:
         """
         Delete the index-th node in the linked list, if the index is valid.
         """
+        if index < 0 or index >= self.count:
+            return
+        elif self.count == 1 and index == 0:
+            self.head = None
+            self.count = 0
+            return
+        elif self.count - 1 == index:
+            cur = self.head
+            while cur.next.next != None:
+                cur = cur.next
+            cur.next = None
+        elif index == 0:
+            self.head = self.head.next
+        else:
+            cur = self.head
+            prev = None
+            while index != 0:
+                prev = cur
+                cur = cur.next
+                index -= 1
+            prev.next = cur.next
+            cur = None
+        self.count -= 1
+
+
 
 # Your MyLinkedList object will be instantiated and called as such:
 # obj = MyLinkedList()
