@@ -30,6 +30,13 @@ class MyLinkedList:
         """
         Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
         """
+        if not self.head:
+            self.head = Node(val)
+        else:
+            newNode = Node(val)
+            newNode.next = self.head
+            self.head = newNode
+        self.count += 1
 
     def addAtTail(self, val: int) -> None:
         """
