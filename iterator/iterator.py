@@ -9,13 +9,13 @@ class MyLinkedList:
         return self
 
 
-    def __init__(self, limit):
+    def __init__(self):
         """
         Initialize your data structure here.
         """
         self.head = None
         self.count = 0
-        self.limit = limit
+        self.limit = 3
         self.counter = 0
 
 
@@ -121,6 +121,29 @@ class MyLinkedList:
             cur = None
         self.count -= 1
 
+class Student:
+    def __init__(self, name, group, subgroup):
+        self.name = name
+        self.group = group
+        self.subgroup = subgroup
+
+    def __str__(self):
+        return f"{self.name} {self.group} {self.subgroup}"
+
+if __name__ == "__main__":
+    student1 = Student('A', 102, 1)
+    student2 = Student('B', 102, 2)
+    student3 = Student('C', 102, 3)
+
+    lst = MyLinkedList()
+    lst.addAtHead(student1)
+    lst.addAtTail(student2)
+    lst.addAtTail(student3)
+    lst.printlist()
+
+    print(next(lst))
+    print(next(lst))
+    print(next(lst))
 
 
 # Your MyLinkedList object will be instantiated and called as such:
