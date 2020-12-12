@@ -1,4 +1,4 @@
-# Intervals
+# Tree
 
 ## Binary Tree Inorder Traversal
 
