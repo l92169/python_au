@@ -1,5 +1,5 @@
 from string import ascii_uppercase
-
+import sys
 
 class Node:
     def __init__(self, value=None, next=None):
@@ -12,13 +12,13 @@ class HexNumber:
         self.head = Node()
         self.arr = []
         for i in num[::-1]:
-            if i.isdigit() == True and i in ascii_uppercase():
+            if i.isdigit() or i in ascii_uppercase:
                 self.addAtTail(i)
             else:
-                return False
+                ValueError
 
 
-    def addAtTail(self, val) -> None:
+    def addAtTail(self, val):
         newNode = Node(val)
         if not self.head:
             self.head = newNode
@@ -32,14 +32,15 @@ class HexNumber:
 
 
     def __str__(self):
-        ''.join(reversed(list(self.arr)))
+        return ''.join(reversed(list(i.val for i in self.arr)))
 
 
 class Solution:
-    def __init__(self,str1,str2):
+    def __init__(self, str1, str2):
         self.str1 = str1
         self.str2 = str2
         self.ostatok = 0
+        self.d = 0
         self.res = HexNumber('')
 
     def from_hex_to_decimal(self, num):
@@ -50,7 +51,7 @@ class Solution:
         return chr(ord('A') + num - 10) if num > 9 else chr(ord('0') + num)
 
 
-    def add(self,str1,str2):
+    def add(self):
         len1 = len(self.str1.arr)
         len2 = len(self.str2.arr)
 
@@ -64,21 +65,28 @@ class Solution:
             else:
                 mx = self.str2.arr
                 mn = self.str1.arr
-
         for i in range(len(mn)):
             summa = self.from_hex_to_decimal(mx[i].val) + self.from_hex_to_decimal(mn[i].val)
+            if summa >= 16:
+                d = summa // 16
             o16 = summa % 16
             if self.ostatok != 0:
                 self.res.addAtTail(self.from_decimal_to_hex(o16 + self.ostatok))
             else:
                 self.res.addAtTail(self.from_decimal_to_hex(o16))
-            if len1!=len2:
-                for i in mx[len(mn)::]:
-                    self.res.addAtTail(i.val)
-            if self.from_hex_to_decimal(self.res.arr[-1].val) > 15 and self.ostatok != 0:
-                self.res.addAtTail(self.from_decimal_to_hex(self.ostatok))
+            if summa >= 16:
+                self.res.addAtTail(self.from_decimal_to_hex(d))
+            self.ostatok = summa // 16
+            self.d = summa // 16
+        if len1 != len2:
+            for i in mx[len(mn)::]:
+                self.res.addAtTail(i.val)
+        if self.from_hex_to_decimal(self.res.arr[-1].val) >= 15 and self.ostatok != 0:
+            self.res.addAtTail(self.from_decimal_to_hex(self.ostatok))
+
+
 if __name__ == '__main__':
-    params = [0,'23','23']
-    sol = Solution(HexNumber(params[1]), HexNumber(params[2]))
+    params = sys.argv
+    sol = Solution(params[1], params[2])
     sol.add()
     print(sol.res)
