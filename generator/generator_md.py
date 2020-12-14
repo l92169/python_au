@@ -79,25 +79,6 @@ def merge_solutions(old_solution, new_solution):
         new += new_solution[i] + '\n'
     return(new)
 
-''' old_splitted = ['', '']
-    ifStop = False
-    ifTitle = False
-    if old_solution != '':
-        ifTitle = True
-    for line_index, line in enumerate(old_solution):
-        if ifTitle and line_index == 0:
-            continue
-        if '[comment]: <> (Stop)' in line:
-            ifStop = True
-            continue
-        if ifStop:
-            old_splitted[1] += line
-        else:
-            old_splitted[0] += line
-    if len(old_splitted) == 1:
-        return new_solution
-    return '{}{}{}'.format(old_splitted[0], new_solution, old_splitted[1])'''
-
 
 def main(input_filename, output_filename):
     in_txt = read_all_lines_from(input_filename)
