@@ -87,6 +87,6 @@ class Solution:
 
 if __name__ == '__main__':
     params = sys.argv
-    sol = Solution(params[1], params[2])
+    sol = Solution(HexNumber(params[1]), HexNumber(params[2]))
     sol.add()
     print(sol.res)
