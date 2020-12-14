@@ -1,4 +1,5 @@
 from string import ascii_uppercase
+from string import digits
 import sys
 
 class Node:
@@ -12,10 +13,10 @@ class HexNumber:
         self.head = Node()
         self.arr = []
         for i in num[::-1]:
-            if i.isdigit() or i in ascii_uppercase:
+            if i.isdigit() or (i >= 'A' and i <= 'F'):
                 self.addAtTail(i)
             else:
-                ValueError
+                TypeError
 
 
     def addAtTail(self, val):
@@ -83,10 +84,20 @@ class Solution:
                 self.res.addAtTail(i.val)
         if self.from_hex_to_decimal(self.res.arr[-1].val) >= 15 and self.ostatok != 0:
             self.res.addAtTail(self.from_decimal_to_hex(self.ostatok))
-
+def proverka(params):
+    k = 0
+    for i in params:
+            if i.isdigit()==False and (i < 'A' or i > 'F'):
+                k += 1
+    return k
 
 if __name__ == '__main__':
     params = sys.argv
-    sol = Solution(HexNumber(params[1]), HexNumber(params[2]))
-    sol.add()
-    print(sol.res)
+    k,d = 0, 0
+    params = ['','F','4']
+    if proverka(params[1]) == 0 and proverka(params[2]) ==0:
+        sol = Solution(HexNumber(params[1]), HexNumber(params[2]))
+        sol.add()
+        print(sol.res)
+    else:
+        print('неправильный ввод')
