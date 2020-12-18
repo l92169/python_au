@@ -1,8 +1,8 @@
 # Intervals
 
-## Insert Interval
-
 + [Insert Interval](#insert-interval)
+
+## Insert Interval
 
 https://leetcode.com/problems/insert-interval/
 
