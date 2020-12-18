@@ -1,8 +1,8 @@
 #Math
 
-##Fizz Buzz
-
 + [Fizz Buzz](#fizz-buzz)
+
+##Fizz Buzz
 
 https://leetcode.com/problems/fizz-buzz/
 
