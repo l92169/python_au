@@ -1,8 +1,8 @@
 # Intervals
 
-## Non-overlapping Intervals
-
 + [Non-overlapping Intervals](#non-overlapping-intervals)
+
+## Non-overlapping Intervals
 
 https://leetcode.com/problems/non-overlapping-intervals/
 
