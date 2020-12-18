@@ -1,8 +1,8 @@
 #Math
 
-##Sqrt(x)
-
 + [Sqrt(x)](#sqrtx)
+
+##Sqrt(x)
 
 https://leetcode.com/problems/sqrtx/
 
