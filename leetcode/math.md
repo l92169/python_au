@@ -1,8 +1,8 @@
 # Math
 
-## Reverse Integer
-
 + [Reverse Integer](#reverse-integer)
+
+## Reverse Integer
 
 https://leetcode.com/problems/reverse-integer/
 
