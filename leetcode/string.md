@@ -1,8 +1,8 @@
-#String
-
-##Reverse String
+# String
 
 + [Reverse String](#reverse-string)
+
+## Reverse String
 
 https://leetcode.com/problems/reverse-string/
 
