@@ -1,6 +1,7 @@
 #Math
 
 + [Fibonacci Number](#fibonacci-number)
++ [Fibonacci Number](#fibonacci-number)
 
 ##Fibonacci Number
 
