@@ -1,8 +1,8 @@
 # Array
 
-## Max Consecutive Ones
-
 + [Max Consecutive Ones](#max-consecutive-ones)
+
+## Max Consecutive Ones
 
 https://leetcode.com/problems/max-consecutive-ones/
 
