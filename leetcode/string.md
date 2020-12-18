@@ -1,8 +1,8 @@
 #String
 
-##Reverse Vowels of a String
-
 + [Reverse Vowels of a String](#reverse-vowels-of-a-string)
+
+##Reverse Vowels of a String
 
 https://leetcode.com/problems/reverse-vowels-of-a-string/
 
