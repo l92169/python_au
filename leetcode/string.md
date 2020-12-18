@@ -1,8 +1,8 @@
 # Intervals
 
-## Reverse Words in a String III
-
 + [Reverse Words in a String III](#reverse-words-in-a-string-iii)
+
+## Reverse Words in a String III
 
 https://leetcode.com/problems/reverse-words-in-a-string-iii/
 
