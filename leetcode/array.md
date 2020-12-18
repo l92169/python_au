@@ -1,8 +1,8 @@
 # Arrays
 
-## Transpose Matrix
-
 + [Transpose Matrix](#transpose-matrix)
+
+## Transpose Matrix
 
 https://leetcode.com/problems/transpose-matrix/
 
