@@ -1,8 +1,9 @@
-#Math
-
-##Largest Perimeter Triangle
+# Math
 
 + [Largest Perimeter Triangle](#largest-perimeter-triangle)
++ [Largest Perimeter Triangle](#largest-perimeter-triangle)
+
+## Largest Perimeter Triangle
 
 https://leetcode.com/problems/largest-perimeter-triangle/
 
@@ -16,4 +17,18 @@ def largestPerimeter(self, A: List[int]) -> int:
                     if A[i] + A[j] + A[t] > maxx:
                         maxx = A[i] + A[j] + A[t]
     return maxx
+```
+
+## Largest Perimeter Triangle
+
+https://leetcode.com/problems/largest-perimeter-triangle/
+
+``` python
+def largestPerimeter(self, A: List[int]) -> int:
+    A.sort()
+    A = list(reversed(A))
+    for i in range(len(A) - 2):
+        if A[i] < A[i + 1] + A[i + 2]:
+            return A[i] + A[i + 1] + A[i + 2] 
+    return 0
 ```
