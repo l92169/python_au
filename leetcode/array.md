@@ -1,8 +1,8 @@
 # Array
 
-## Reshape the Matrix
-
 + [Reshape the Matrix](#reshape-the-matrix)
+
+## Reshape the Matrix
 
 https://leetcode.com/problems/reshape-the-matrix/
 
