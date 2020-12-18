@@ -1,8 +1,8 @@
-# Intervals
-
-## Base 7
+# Math
 
 + [Base 7](#base-7)
+
+## Base 7
 
 https://leetcode.com/problems/base-7/
 
