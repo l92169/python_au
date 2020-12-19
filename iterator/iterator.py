@@ -139,11 +139,9 @@ if __name__ == "__main__":
     lst.addAtHead(student1)
     lst.addAtTail(student2)
     lst.addAtTail(student3)
-    lst.printlist()
 
-    print(next(lst))
-    print(next(lst))
-    print(next(lst))
+    for st in lst:
+        print(st)
 
 
 # Your MyLinkedList object will be instantiated and called as such:
