@@ -1,39 +1,29 @@
 import unittest
-from hexnumber.hexnum import Node, HexNumber, Solution
-class TestHexNumber(unittest.TestCase):
-    def test_num(self):
-        num = str(HexNumber(""))
-        self.assertEqual(num,"")
-
-        num = str(HexNumber("1563"))
-        self.assertEqual(num, "1563")
-
-        num = str(HexNumber("A"))
-        self.assertEqual(num, "A")
-
-class TestSolution(unittest.TestCase):
-    def test_from_hex_to_decimal(self):
-        test = Solution(HexNumber(''), HexNumber(''))
-        self.assertEqual(test.from_hex_to_decimal('1'), 1)
-        self.assertEqual(test.from_hex_to_decimal('A'), 10)
-        self.assertEqual(test.from_hex_to_decimal('F'), 15)
+from hexnumber.hexnum import HexNumber
 
 
-    def test_from_decimal_to_hex(self):
-        test = Solution(HexNumber(''), HexNumber(''))
-        self.assertEqual(test.from_decimal_to_hex(1), '1')
-        self.assertEqual(test.from_decimal_to_hex(10), 'A')
-        self.assertEqual(test.from_decimal_to_hex(15), 'F')
+class testing(unittest.TestCase):
+    def test_add_common(self):
+        num1 = HexNumber("310")
+        num2 = HexNumber("120")
+        expect = "430"
+        result = str(num1.add(num2))
+        self.assertEqual(expect, result)
 
-    def test_add(self):
-        test = Solution(HexNumber('8'), HexNumber('0'))
-        test.add()
-        self.assertEqual(str(test.res),'8')
+    def test_add_complicated(self):
+        num1 = HexNumber("B55")
+        num2 = HexNumber("730")
+        expect = "1285"
+        result = str(num1.add(num2))
+        self.assertEqual(expect, result)
 
-        test = Solution(HexNumber('A'), HexNumber('A'))
-        test.add()
-        self.assertEqual(str(test.res), '14')
+    def test_add_different_len(self):
+        num1 = HexNumber("11")
+        num2 = HexNumber("1111")
+        expect = "1122"
+        result = str(num1.add(num2))
+        self.assertEqual(expect, result)
 
-        test = Solution(HexNumber('F5'), HexNumber('F6'))
-        test.add()
-        self.assertEqual(str(test.res), '1EB')
+
+if __name__ == '__main__':
+    unittest.main()
