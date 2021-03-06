@@ -4,7 +4,7 @@ import json
 TASK_PREFIX = ['LEETCODE', 'GENERATOR', 'TRIANGLE', 'HEXNUMBER', 'REQUESTS', 'ITERATOR']
 GROUPS = ['1011', '1012', '1021', '1022']
 ACTION = ['Added', 'Deleted', 'Refactored', 'Fixed', 'Moved']
-TOKEN = '7a32f69e1f833088fca51bc0b00ff2c88708d8ca'
+TOKEN = ''
 
 
 def prepare_headers():
