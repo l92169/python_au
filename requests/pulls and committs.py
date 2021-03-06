@@ -3,7 +3,7 @@ import json
 PREFIXES = ['GENERATOR', 'LEETCODE', 'HEXNUMBER','ITERATOR', 'TRIANGLE']
 GROUPS = ['1011','1012','1021','1022']
 ACTION = ['Added','Deleted','Refactored','Fixed','Moved']
-TOKEN = '374f6c33b889278d324dd2f06e3ffaf9a7c8a730'
+TOKEN = '1d68ea6cbb80c9032005710d5c3e34d228b3895d'
 
 
 def prepare_headers():
@@ -13,10 +13,10 @@ def prepare_headers():
     }
 
 
-def check_prefixes(pr):
+def check_prefixes(title):
     result = []
     TF = True
-    title = pr['title'].split()
+    title = title.split()
     prefixes = title[0].split('-')
     pull_prefix, group = prefixes[0], prefixes[1]
     if pull_prefix not in PREFIXES:
@@ -56,6 +56,7 @@ def main():
     repos ='python_au'
     state = 'open'
     for pr in (get_all_user_pr(user, repos, state)).json():
-        print(pr)
+        if not check_prefixes(pr['title'])[1]:
+          send_pr_comment(pr, check_prefixes(pr['title'])[0])
 main()
 
