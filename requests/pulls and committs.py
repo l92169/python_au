@@ -13,10 +13,10 @@ def prepare_headers():
     }
 
 
-def check_pull(pull):
+def check_prefixes(pr):
     result = []
     TF = True
-    title = pull['title'].split()
+    title = pr['title'].split()
     prefixes = title[0].split('-')
     pull_prefix, group = prefixes[0], prefixes[1]
     if pull_prefix not in PREFIXES:
@@ -31,22 +31,22 @@ def check_pull(pull):
     return '/n'.join(result), TF
 
 
-def post_message(pull, message):
-    r = requests.post(pull['url']+'/comments', headers = prepare_headers(), data = {'body': '{}'.format(message),
-                                                                                    'path': requests.get(pull['url']+'/files', headers = prepare_headers()).json()[0]['filename'],
-                                                                                    'position': 1,
-                                                                                    'commit_id':pull['head']['sha']})
+def send_pr_comment(pr, errors):
+    r = requests.post(pr['url']+'/comments', headers = prepare_headers(), data = {'body': '{}'.format(errors),
+                                                                                  'path': requests.get(pr['url']+'/files', headers = prepare_headers()).json()[0]['filename'],
+                                                                                  'position': 1,
+                                                                                  'commit_id': pr['head']['sha']})
     print(r.status_code)
 
 
-def get_pulls(user, repos, state):
-    url = 'https://api.github.com/repos/{}/{}/pulls?state={}'.format(str(user), str(repos),str(state))
+def get_all_user_pr(user_login, repos_name, pr_state):
+    url = 'https://api.github.com/repos/{}/{}/pulls?state={}'.format(str(user_login), str(repos_name), str(pr_state))
     pulls = requests.get(url, headers = prepare_headers())
     return pulls
 
 
-def get_commits(pull):
-    url = pull['commits_url']
+def get_all_pr_commits(pr):
+    url = pr['commits_url']
     commits = requests.get(url, headers = prepare_headers())
     return commits
 
@@ -55,7 +55,7 @@ def main():
     user = 'l92169'
     repos ='python_au'
     state = 'open'
-    for pull in (get_pulls(user, repos, state)).json():
-        if not check_pull(pull)[1]:
-          post_message(pull, check_pull(pull)[0])
+    for pr in (get_all_user_pr(user, repos, state)).json():
+        print(pr)
 main()
+
