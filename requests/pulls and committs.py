@@ -1,17 +1,16 @@
 import requests
 import json
-
-TASK_PREFIX = ['LEETCODE', 'GENERATOR', 'TRIANGLE', 'HEXNUMBER', 'ITERATOR']
-GROUPS = ['1011', '1012', '1021', '1022']
-ACTION = ['Added', 'Deleted', 'Refactored', 'Fixed', 'Moved']
-TOKEN = 'ad8c207f02cfa9d73fab37d4d85a5c6e2fe0ab22'
+TASK_PREFIX = ['GENERATOR', 'LEETCODE', 'HEXNUMBER','ITERATOR', 'TRIANGLE']
+GROUPS = ['1011','1012','1021','1022']
+ACTION = ['Added','Deleted','Refactored','Fixed','Moved']
+TOKEN = '1dc732490d3d6cb372a218aba4a8a8a48def0a68'
 
 
 def prepare_headers():
-    return {'Authorization': 'token ' + TOKEN,
-            'Content-Type': "application/json",
-            'Accept': "application/vnd.github.v3+json"
-            }
+    return{'Authorization': 'token ' + TOKEN,
+           'Content-Type': "application/json",
+           'Accept': "application/vnd.github.v3+json"
+    }
 
 
 def check_prefixes(title):
@@ -44,19 +43,18 @@ def prepare_body(pr, errors):
 
 
 def send_pr_comment(pr, errors):
-    r = requests.post(pr['url'] + '/comments', headers = prepare_headers(), json = prepare_body(pr, errors))
+    r = requests.post(pr['url']+'/comments', headers = prepare_headers(), json = prepare_body(pr, errors))
 
 
 def get_all_user_pr(user_login, repos_name, pr_state):
-    url = 'https://api.github.com/repos/{}/{}/pulls?state={}'.format(user_login, repos_name, pr_state)
-    pulls = requests.get(url, headers=prepare_headers())
-    print(pulls.status_code)
+    url = 'https://api.github.com/repos/{}/{}/pulls?state={}'.format(str(user_login), str(repos_name), str(pr_state))
+    pulls = requests.get(url, headers = prepare_headers())
     return pulls
 
 
 def get_all_pr_commits(pr):
     url = pr['commits_url']
-    commits = requests.get(url, headers=prepare_headers())
+    commits = requests.get(url, headers = prepare_headers())
     return commits
 
 
@@ -77,8 +75,8 @@ def verify_pr(pr):
 
 
 def main():
-    user = 'l92169'
-    repos = 'python_au'
+    user = 'l92169' 
+    repos ='python_au' 
     state = 'open'
     for pr in (get_all_user_pr(user, repos, state)).json():
         verify_pr(pr)
