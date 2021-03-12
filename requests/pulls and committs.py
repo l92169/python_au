@@ -1,9 +1,11 @@
 import requests
 import json
+
+
 TASK_PREFIX = ['GENERATOR', 'LEETCODE', 'HEXNUMBER','ITERATOR', 'TRIANGLE']
 GROUPS = ['1011','1012','1021','1022']
 ACTION = ['Added','Deleted','Refactored','Fixed','Moved']
-TOKEN = '1dc732490d3d6cb372a218aba4a8a8a48def0a68'
+TOKEN = ''
 
 
 def prepare_headers():
@@ -47,7 +49,7 @@ def send_pr_comment(pr, errors):
 
 
 def get_all_user_pr(user_login, repos_name, pr_state):
-    url = 'https://api.github.com/repos/{}/{}/pulls?state={}'.format(str(user_login), str(repos_name), str(pr_state))
+    url = 'https://api.github.com/repos/{}/{}/pulls?state={}'.format(user_login, repos_name, pr_state)
     pulls = requests.get(url, headers = prepare_headers())
     return pulls
 
