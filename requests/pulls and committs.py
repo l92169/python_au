@@ -32,6 +32,7 @@ def check_prefixes(title):
     else:
         result.append('You need to write "-" between prefix of your message and group number')
         TF = False
+        
     return '/n'.join(result), TF
 
 
