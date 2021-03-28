@@ -63,18 +63,12 @@ def get_all_pr_commits(pr):
 
 def check_author(comment):
     author = comment['user']['login']
-    if author == user:
-        return True
-    else:
-        return False
+    return (author == user)
 
 
 def VERIFICATION_RESULT(comment):
     message = comment['body']
-    if message.startswith('VERIFICATION RESULT'):
-        return True
-    else:
-        return False
+    return (message.startswith('VERIFICATION RESULT'))
 
 
 def get_time_last_comment(pr):
