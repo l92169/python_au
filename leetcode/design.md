@@ -1,4 +1,4 @@
-# Intervals
+# Design
 
 + [Min Stack](#min-stack)
 
