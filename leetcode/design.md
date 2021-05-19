@@ -1,4 +1,4 @@
-# Design
+# Design 
 
 + [Min Stack](#min-stack)
 
