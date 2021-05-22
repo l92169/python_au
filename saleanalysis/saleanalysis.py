@@ -82,10 +82,6 @@ def generator_file_with_staff_id():
                                                    data[i][1],
                                                    random.randint(1, 10),
                                                    new_count_staff_id))
-                print("{},{},{},{} \n".format(data[i][0],
-                                              data[i][1],
-                                              random.randint(1, 10),
-                                              new_count_staff_id))
             if d == 1:
                 break
     file.close()
@@ -141,6 +137,7 @@ def filter_data(data, key, value, arg):
 def main():
     generator_file_without_staff_id()
     generator_file_with_staff_id()
+    print(list_dict('test.csv'))
     data1 = sort_key(list_dict('input.csv'), 'date')
     data2 = sort_key(list_dict('input1.csv'), 'date')
     drawing_one_resource_(data1,3)
