@@ -3,7 +3,7 @@
 + [Is Graph Bipartite?](#is-graph-bipartite)
 
 ## Is Graph Bipartite?
-
+ 
 https://leetcode.com/problems/is-graph-bipartite/
 
 ``` python
