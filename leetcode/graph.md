@@ -1,32 +1,27 @@
 # Graph
 
-+ [Cheapest Flights Within K Stops](#cheapest-flights-within-k-stops)
++ [Is Graph Bipartite?](#is-graph-bipartite)
 
-## Cheapest Flights Within K Stops
+## Is Graph Bipartite?
 
-https://leetcode.com/problems/cheapest-flights-within-k-stops/
+https://leetcode.com/problems/is-graph-bipartite/
 
 ``` python
-def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K: int) -> int:
-
-    if src == dst: return 0
-    d = collections.defaultdict(list)
-    seen =  collections.defaultdict(lambda: float('inf'))
-    for u, v, p in flights:
-        d[u] += [(v, p)]
-
-    q = [(src, -1, 0)]
-
-    while q:
-        pos, k, cost = q.pop(0)
-        if pos == dst or k == K: continue
-        for nei, p in d[pos]:
-            if cost + p >= seen[nei]:
-                continue
-            else:
-                seen[nei] = cost+p
-                q += [(nei, k+1, cost+p)]
-
-    return seen[dst] if seen[dst] < float('inf') else -1
+def isBipartite(self, graph: List[List[int]]) -> bool:
+    n = len(graph)
+    color = {}
+    def dfs(u):
+        for v in graph[u]:
+            if v not in color:
+                color[v] = 1 - color[u]
+                if not dfs(v): return False
+            elif color[v] == color[u]:
+                return False
+        return True
+    for i in range(n):
+        if i not in color and graph[i]:
+            color[i] = 1
+            if not dfs(i): return False
+    return True
 ```
 
