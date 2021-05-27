@@ -5,7 +5,7 @@
 ## Is Graph Bipartite?
 
 https://leetcode.com/problems/is-graph-bipartite/
-   
+
 ``` python
 def isBipartite(self, graph: List[List[int]]) -> bool:
     n = len(graph)
