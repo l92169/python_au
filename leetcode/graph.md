@@ -3,7 +3,7 @@
 + [Course Schedule](#course-schedule)
 
 ## Course Schedule
-
+ 
 https://leetcode.com/problems/course-schedule/
 
 ``` python
