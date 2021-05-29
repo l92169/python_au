@@ -1,19 +1,16 @@
 import requests
 import json
-TASK_PREFIX = ['GENERATOR', 'LEETCODE', 'HEXNUMBER','ITERATOR', 'TRIANGLE', 'REQUESTS']
-GROUPS = ['1011','1012','1021','1022']
-ACTION = ['Added','Deleted','Refactored','Fixed','Moved']
-TOKEN = ''
-user = 'l92169' 
-repos ='python_au' 
-state = 'open'
+TASK_PREFIX = ['GENERATOR', 'LEETCODE', 'HEXNUMBER', 'ITERATOR', 'TRIANGLE', 'REQUESTS']
+GROUPS = ['1011','1012','1021','1022'] 
+ACTION = ['Added', 'Deleted', 'Refactored', 'Fixed', 'Moved']
+TOKEN = '655568f0dd9176541d48450ed1de03acf4774d40'
 
 
 def prepare_headers():
     return{'Authorization': 'token ' + TOKEN,
            'Content-Type': "application/json",
            'Accept': "application/vnd.github.v3+json"
-    }
+           }
 
 
 def check_prefixes(title):
@@ -35,6 +32,7 @@ def check_prefixes(title):
     else:
         result.append('You need to write "-" between prefix of your message and group number')
         TF = False
+        
     return '/n'.join(result), TF
 
 
@@ -61,23 +59,12 @@ def get_all_pr_commits(pr):
     return commits
 
 
-def check_author(comment):
-    author = comment['user']['login']
-    return (author == user)
-
-
-def VERIFICATION_RESULT(comment):
-    message = comment['body']
-    return (message.startswith('VERIFICATION RESULT'))
-
-
 def get_time_last_comment(pr):
     url = pr['review_comments_url']
-    comments = requests.get(url, headers = prepare_headers())
+    comments = requests.get(url, headers=prepare_headers())
     time_last_comment = "0000-00-00T00:00:00Z"
     for comment in comments.json():
-        if check_author(comment) and VERIFICATION_RESULT(comment):
-            time_last_comment = comment['created_at']
+        time_last_comment = comment['created_at']
     return time_last_comment
 
 
@@ -94,8 +81,7 @@ def check_time(time_last_comment, time_commit):
 
 
 def verify_pr(pr):
-    message = 'VERIFICATION RESULT \n'
-    message += 'Your pull request {}\n'.format(pr['title'])
+    message = 'Your pull request {}/n'.format(pr['title'])
     get_time_last_comment(pr)
     t, TF = check_prefixes(pr['title'])[0], check_prefixes(pr['title'])[1]
     message += t
@@ -104,21 +90,20 @@ def verify_pr(pr):
     for commit in get_all_pr_commits(pr).json():
         time_commit = get_time_commit(commit)
         if check_time(time_last_comment, time_commit):
-            TF = True
             comm = commit['commit']
+            message += 'Your commit: {}\n'.format(comm['message'])
             com, TF_com = check_prefixes(comm['message'])[0], check_prefixes(comm['message'])[1]
             TF = TF * TF_com
-            if not TF:
-                message += 'Your commit: {}\n'.format(comm['message'])
-                message += com
-                message += '\n\n'
+            message += com
+            message += '\n'
     if not TF: 
         return send_pr_comment(pr, message)
 
 
 def main():
+    user = 'l92169' 
+    repos ='python_au' 
+    state = 'open'
     for pr in (get_all_user_pr(user, repos, state)).json():
         verify_pr(pr)
-
-
 main()
